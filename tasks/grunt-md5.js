@@ -47,6 +47,11 @@ module.exports = function(grunt) {
           var destFile;
           var ext = '';
           var filename;
+
+          if (_.isFunction(options.beforeEach)) {
+            options.beforeEach.call(context, srcFile, options);
+          }
+
           var srcCode = grunt.file.read(srcFile, {encoding: options.encoding});
 
           // keep extension unless you explicitly tell to not
